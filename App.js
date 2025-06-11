@@ -8,9 +8,9 @@ console.log(heading);
 const jsxHeading=<h1>Namaste React using jsx</h1>
 console.log(jsxHeading);
 
-const root=ReactDOM.createRoot(document.getElementById("root"))
+const root=ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(jsxHeading)
+root.render(jsxHeading);
 
 
 
