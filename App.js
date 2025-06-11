@@ -10,7 +10,7 @@ console.log(jsxHeading);
 
 const root=ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(jsxHeading);
+root.render(jsxHeading)
 
 
 
