@@ -25,13 +25,13 @@ const styleCard={
 }
 
 const RestrauntCard=(props)=>{
-  console.log(props);
+  const {resName,rating,cuisine}=props;
   return(
     <div className="res-card" style={styleCard}>
       <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/12/9/d62fa6fe-c0a4-4a0f-a191-6bc58b8d7a72_77013.JPG"/>
-      <h3 className="res-name">{props.resName}</h3>
-      <h4 className="res-rating">{props.rating} </h4>
-      <h4 className="res-cuisine">{props.cuisine}</h4>
+      <h3 className="res-name">{resName}</h3>
+      <h4 className="res-rating">{rating} </h4>
+      <h4 className="res-cuisine">{cuisine}</h4>
     </div>
   )
 };
