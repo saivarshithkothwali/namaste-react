@@ -24,13 +24,14 @@ const styleCard={
   backgroundColor:"#f0f0f0",
 }
 
-const RestrauntCard=()=>{
+const RestrauntCard=(props)=>{
+  console.log(props);
   return(
     <div className="res-card" style={styleCard}>
       <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/12/9/d62fa6fe-c0a4-4a0f-a191-6bc58b8d7a72_77013.JPG"/>
-      <h3 className="res-name">KFC</h3>
-      <h4 className="res-rating">4.3 15-20 mins</h4>
-      <h4 className="res-cuisine">Burger,Fast food,Rolls & Wraps</h4>
+      <h3 className="res-name">{props.resName}</h3>
+      <h4 className="res-rating">{props.rating} </h4>
+      <h4 className="res-cuisine">{props.cuisine}</h4>
     </div>
   )
 };
@@ -43,18 +44,17 @@ const Body=()=>{
       </div>
       <div className="res-container">
         {/*restraunt cards*/}
-        <RestrauntCard/>
-        <RestrauntCard/>
-        <RestrauntCard/>
-        <RestrauntCard/>
-        <RestrauntCard/>
-        <RestrauntCard/>
-        <RestrauntCard/>
-        <RestrauntCard/>
-        <RestrauntCard/>
-        <RestrauntCard/>
-        <RestrauntCard/>
-        <RestrauntCard/>
+        <RestrauntCard 
+          resName="KFC"
+          cuisine="Biryani,North Indian"
+          rating="4.5"
+        />
+        <RestrauntCard
+          resName="pizza Hut"
+          cuisine="Pizza,Burger,FastFood"
+          rating="4.4"
+        />
+        
         
 
       </div>
