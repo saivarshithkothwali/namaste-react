@@ -1,23 +1,88 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const Title=()=>(
-  <h1 id="heading" tabIndex={1}>Namaste React using jsx</h1>
-);
-const num=100;
-const HeadingComponent=()=>(
-    <div id="container">
-      {"javscript inside a functional component"}
-      {10000}
-      {console.log(num)}
-      {num}
-     <h1 className="heading">Namaste React functional component</h1>
+const Header=()=>{
+  return(
+    <div className="header">
+      <div className="logo-container">
+        <img className="logo" src="https://s3.amazonaws.com/cdn.designcrowd.com/blog/39-Food-Delivery-Logos-That-Will-Leave-You-Hungry-For-More/food-express-by-gigih-rudya-designcrowd.png"/>
+      </div>
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>AboutUs</li>
+          <li>ContactUs</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+
     </div>
-);
+  )
+};
+
+const styleCard={
+  backgroundColor:"#f0f0f0",
+}
+
+const RestrauntCard=()=>{
+  return(
+    <div className="res-card" style={styleCard}>
+      <img className="res-logo" alt="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/12/9/d62fa6fe-c0a4-4a0f-a191-6bc58b8d7a72_77013.JPG"/>
+      <h3 className="res-name">KFC</h3>
+      <h4 className="res-rating">4.3 15-20 mins</h4>
+      <h4 className="res-cuisine">Burger,Fast food,Rolls & Wraps</h4>
+    </div>
+  )
+};
+
+const Body=()=>{
+  return(
+    <div className="body">
+      <div className="search">
+        Search
+      </div>
+      <div className="res-container">
+        {/*restraunt cards*/}
+        <RestrauntCard/>
+        <RestrauntCard/>
+        <RestrauntCard/>
+        <RestrauntCard/>
+        <RestrauntCard/>
+        <RestrauntCard/>
+        <RestrauntCard/>
+        <RestrauntCard/>
+        <RestrauntCard/>
+        <RestrauntCard/>
+        <RestrauntCard/>
+        <RestrauntCard/>
+        
+
+      </div>
+    </div>
+
+
+  )
+};
+
+const AppLayout=()=>{
+  return(
+    <div className="app">
+      
+      <Header/>
+      <Body/>
+      
+      {/* Footer */}
+
+
+    </div>
+
+
+  )
+}
 
 const root=ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<HeadingComponent/>);
+root.render(<AppLayout/>);
 
 
 
