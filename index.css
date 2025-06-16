@@ -71,7 +71,7 @@
   color:#000000;
 }
 
-.res-rating{
+.res-rating-delTime{
   font-size: 16px;
   font-weight:500;
   padding: 5px 5px 0 5px;
@@ -85,7 +85,14 @@
   padding: 5px 5px 0 5px;
   color:#777777 ;
   margin: 0;
+}
 
+.res-area{
+  font-size: 16px;
+  font-weight:200;
+  padding: 5px 5px 0 5px;
+  color:#777777;
+  margin: 0;
 }
 
 
