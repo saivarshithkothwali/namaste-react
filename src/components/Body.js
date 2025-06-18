@@ -4,7 +4,16 @@ import resList from "../utils/mockData";
 export const Body = () => {
   return (
     <div className="body">
-      <div className="search">Search</div>
+      <div className="filter">
+        <button
+          className="filter-btn"
+          onClick={() => {
+            console.log("Button Clicked");
+          }}
+        >
+          Ratings 4.0+
+        </button>
+      </div>
       <div className="res-container">
         {resList.map((restraunt) => (
           <RestrauntCard key={restraunt.info.id} resData={restraunt} />
