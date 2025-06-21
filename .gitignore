@@ -2,3 +2,7 @@
 /dist
 .parcel-cache
 
+Rendering is the process of displaying content (like text, images, UI components) on the screen, based on code or data.
+In the context of React:Converting your React components (JSX/JS) into actual HTML elements that appear in the browser.
+
+

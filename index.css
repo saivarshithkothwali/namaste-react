@@ -37,7 +37,7 @@
   width: 200px;
   height: 300px;
   margin: 15px;
-  border-radius: 12px;
+  border-radius: 6px;
   gap: 0px;
 }
 
@@ -93,13 +93,26 @@
 .filter-btn {
   padding: 8px;
   font-size: 15px;
-  margin: 20px;
+  margin: 20px 5px 10px 5px;
   border: 0px;
   border-radius: 9999px;
   cursor: pointer;
 }
 
 .filter-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.filter-PureVeg {
+  padding: 8px;
+  font-size: 15px;
+  margin: 20px 5px 10px 5px;
+  border: 0px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.filter-PureVeg:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
