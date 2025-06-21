@@ -1,6 +1,7 @@
 import RestrauntCard from "./RestrauntCard";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestraunts, setListOfRestraunts] = useState([]);
@@ -21,7 +22,9 @@ const Body = () => {
     );
   };
 
-  console.log("Body Rendered");
+  if (listOfRestraunts.length === 0) {
+    return <Shimmer />;
+  }
 
   return (
     <div className="body">
