@@ -1,5 +1,5 @@
 import RestrauntCard from "./RestrauntCard";
-import resList from "../utils/mockData";
+
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 
@@ -22,11 +22,9 @@ const Body = () => {
     );
   };
 
-  if (listOfRestraunts.length === 0) {
-    return <Shimmer />;
-  }
-
-  return (
+  return listOfRestraunts.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
         <button
