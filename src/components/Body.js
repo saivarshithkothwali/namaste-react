@@ -5,6 +5,7 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestraunts, setListOfRestraunts] = useState([]);
+  const [filteredRestraunt, setFilteredRestraunt] = useState([]);
 
   const [searchText, setSearchText] = useState("");
   console.log("Body Rendered");
@@ -21,6 +22,9 @@ const Body = () => {
     console.log(json);
 
     setListOfRestraunts(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestraunt(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
@@ -45,7 +49,7 @@ const Body = () => {
               const filteredRestraunt = listOfRestraunts.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setListOfRestraunts(filteredRestraunt);
+              setFilteredRestraunt(filteredRestraunt);
               console.log(searchText);
             }}
           >
@@ -79,7 +83,7 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {listOfRestraunts.map((restraunt) => (
+        {filteredRestraunt.map((restraunt) => (
           <RestrauntCard key={restraunt.info.id} resData={restraunt} />
         ))}
       </div>
