@@ -138,3 +138,18 @@
   font-size: 12px;
   cursor: pointer;
 }
+
+.filter {
+  display: flex;
+}
+
+.search {
+  padding: 8px;
+
+  margin: 20px 5px 10px 5px;
+  border: 0px;
+}
+
+.search-button {
+  cursor: pointer;
+}

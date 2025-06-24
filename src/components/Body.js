@@ -6,6 +6,9 @@ import Shimmer from "./Shimmer";
 const Body = () => {
   const [listOfRestraunts, setListOfRestraunts] = useState([]);
 
+  const [searchText, setSearchText] = useState("");
+  console.log("Body Rendered");
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -27,6 +30,28 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="search-button"
+            onClick={() => {
+              const filteredRestraunt = listOfRestraunts.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setListOfRestraunts(filteredRestraunt);
+              console.log(searchText);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
@@ -38,6 +63,7 @@ const Body = () => {
         >
           Ratings 4.0+
         </button>
+
         <button
           className="filter-btn"
           onClick={() => {
@@ -51,6 +77,7 @@ const Body = () => {
           Less than ₹300
         </button>
       </div>
+
       <div className="res-container">
         {listOfRestraunts.map((restraunt) => (
           <RestrauntCard key={restraunt.info.id} resData={restraunt} />
