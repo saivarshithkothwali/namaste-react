@@ -5,10 +5,10 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestraunts, setListOfRestraunts] = useState([]);
-  const [filteredRestraunt, setFilteredRestraunt] = useState([]);
+  const [filteredRestraunts, setFilteredRestraunts] = useState([]);
 
   const [searchText, setSearchText] = useState("");
-  console.log("Body Rendered");
+  //console.log("Body Rendered");
 
   useEffect(() => {
     fetchData();
@@ -24,7 +24,7 @@ const Body = () => {
     setListOfRestraunts(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setFilteredRestraunt(
+    setFilteredRestraunts(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
@@ -49,7 +49,7 @@ const Body = () => {
               const filteredRestraunt = listOfRestraunts.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setFilteredRestraunt(filteredRestraunt);
+              setFilteredRestraunts(filteredRestraunt);
               console.log(searchText);
             }}
           >
@@ -62,7 +62,7 @@ const Body = () => {
             const filteredList = listOfRestraunts.filter(
               (res) => res.info.avgRating > 4.0
             );
-            setListOfRestraunts(filteredList);
+            setFilteredRestraunts(filteredList);
           }}
         >
           Ratings 4.0+
@@ -75,7 +75,7 @@ const Body = () => {
               const cost = parseInt(res.info.costForTwo.match(/\d+/)[0]);
               return cost <= 300;
             });
-            setListOfRestraunts(filteredList);
+            setFilteredRestraunts(filteredList);
           }}
         >
           Less than ₹300
@@ -83,7 +83,7 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {filteredRestraunt.map((restraunt) => (
+        {filteredRestraunts.map((restraunt) => (
           <RestrauntCard key={restraunt.info.id} resData={restraunt} />
         ))}
       </div>
