@@ -158,3 +158,24 @@
 .search-button {
   cursor: pointer;
 }
+
+.menu {
+  max-width: 600px;
+  margin: 20px auto; /* smaller top/bottom spacing */
+  text-align: center;
+  padding: 10px 20px; /* less vertical padding */
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  font-family: sans-serif;
+}
+.menu h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.menu h3 {
+  margin: 4px 0;
+  font-weight: 500;
+  color: #444444;
+}
