@@ -6,3 +6,6 @@ export const LOGO_URL =
 
 export const ITEM_IMAGE_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";
+
+export const MENU_URL =
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.002668480081386&lng=79.54484011977911&restaurantId=";

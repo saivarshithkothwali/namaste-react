@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { ITEM_IMAGE_URL } from "../utils/constants";
+import { useParams } from "react-router-dom";
+import { MENU_URL } from "../utils/constants";
 
 const RestrauntMenu = () => {
   const [resInfo, setResInfo] = useState(null);
+
+  const { resId } = useParams();
+
   useEffect(() => {
     fetchMenu();
   }, []);
 
   const fetchMenu = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.002668480081386&lng=79.54484011977911&restaurantId=77013&catalog_qa=undefined&submitAction=ENTER"
-    );
+    const data = await fetch(MENU_URL + resId);
     const json = await data.json();
     console.log(json);
     setResInfo(json.data);
@@ -28,8 +31,11 @@ const RestrauntMenu = () => {
     areaName,
   } = resInfo?.cards[2]?.card?.card?.info;
 
-  const { itemCards } =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+  const regularCards =
+    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
+
+  const itemCards = regularCards?.[2]?.card?.card?.itemCards || [];
+
   console.log(itemCards);
 
   return (
@@ -49,7 +55,9 @@ const RestrauntMenu = () => {
             <div className="item-details">
               <h3 className="name">{item.card.info.name}</h3>
               <p className="price">
-                Rs.{item.card.info.price / 100 || item.card.info.price / 100}
+                Rs.
+                {item.card.info.price / 100 ||
+                  item.card.info.defaultPrice / 100}
               </p>
               <p className="rating">
                 ⭐{item.card.info.ratings.aggregatedRating.rating} (
