@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { ITEM_IMAGE_URL } from "../utils/constants";
 
 const RestrauntMenu = () => {
   const [resInfo, setResInfo] = useState(null);
@@ -17,6 +18,7 @@ const RestrauntMenu = () => {
   };
 
   if (resInfo === null) return <Shimmer />;
+
   const {
     name,
     cuisines,
@@ -25,14 +27,46 @@ const RestrauntMenu = () => {
     totalRatingsString,
     areaName,
   } = resInfo?.cards[2]?.card?.card?.info;
+
+  const { itemCards } =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+  console.log(itemCards);
+
   return (
-    <div className="menu">
-      <h1>{name}</h1>
-      <h3>
-        ⭐{avgRatingString} ({totalRatingsString}) ▪️{costForTwoMessage}
-      </h3>
-      <h3>{cuisines.join(", ")}</h3>
-      <h3>{areaName}</h3>
+    <div>
+      <div className="menu">
+        <h1>{name}</h1>
+        <h3>
+          ⭐{avgRatingString} ({totalRatingsString}) ▪️{costForTwoMessage}
+        </h3>
+        <h3>{cuisines.join(", ")}</h3>
+        <h3>{areaName}</h3>
+      </div>
+
+      <div className="res-menu">
+        {itemCards.map((item) => (
+          <div key={item.card.info.id} className="menu-item">
+            <div className="item-details">
+              <h3 className="name">{item.card.info.name}</h3>
+              <p className="price">
+                Rs.{item.card.info.price / 100 || item.card.info.price / 100}
+              </p>
+              <p className="rating">
+                ⭐{item.card.info.ratings.aggregatedRating.rating} (
+                {item.card.info.ratings.aggregatedRating.ratingCountV2})
+              </p>
+              <p className="description">{item.card.info.description}</p>
+            </div>
+            {item.card.info.imageId && (
+              <img
+                src={ITEM_IMAGE_URL + item.card.info.imageId}
+                alt={item.card.info.name}
+                className="food-img"
+              />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
