@@ -240,3 +240,8 @@
   border-radius: 10px;
   object-fit: cover;
 }
+
+.user-card {
+  margin: 10px;
+  border: 1px black;
+}
