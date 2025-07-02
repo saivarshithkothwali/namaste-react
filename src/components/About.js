@@ -11,7 +11,7 @@ const About = () => {
       />
       <UserClass
         name={"varshith(Class Component)"}
-        ocation={"Hanamkonda(Class Component)"}
+        location={"Hanamkonda(Class Component)"}
       />
     </div>
   );
