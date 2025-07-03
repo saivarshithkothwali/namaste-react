@@ -242,6 +242,13 @@
 }
 
 .user-card {
-  margin: 10px;
-  border: 1px black;
+  margin: 16px auto;
+  padding: 16px;
+  width: 300px;
+  border: 1px solid #cccccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  background-color: #eeeeee;
+  text-align: left;
 }
