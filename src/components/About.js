@@ -6,8 +6,8 @@ const About = () => {
     <div>
       <h1>About</h1>
       <User
-        name="varshith(functional Component)"
-        location="Hanamkonda(functional Component)"
+        name={"varshith(functional Component)"}
+        location={"Hanamkonda(functional Component)"}
       />
       <UserClass
         name={"varshith(Class Component)"}
