@@ -3,15 +3,21 @@ import React from "react";
 class UserClass extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    //console.log(props);
 
     this.state = {
       count: 0,
       count1: 1,
     };
+    console.log("Child Constructor");
+  }
+
+  componentDidMount() {
+    console.log("Child Component did Mount");
   }
 
   render() {
+    console.log("Child Render");
     return (
       <div className="user-card">
         <h3>{this.state.count}</h3>

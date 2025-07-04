@@ -7,11 +7,7 @@ const Header = () => {
 
   const [btnNameReact, setBtnNameReact] = useState("Login");
 
-  console.log("Header Rendered");
-
-  useEffect(() => {
-    console.log("useEffect Rendered");
-  }, [btnNameReact]);
+  useEffect(() => {}, [btnNameReact]);
 
   return (
     <div className="header">
