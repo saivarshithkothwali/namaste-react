@@ -18,14 +18,8 @@ class About extends Component {
     return (
       <div>
         <h1>About</h1>
-        <User
-          name={"varshith(functional Component)"}
-          location={"Hanamkonda(functional Component)"}
-        />
-        <UserClass
-          name={"varshith(Class Component)"}
-          location={"Hanamkonda(Class Component)"}
-        />
+        <UserClass name={"first"} location={"Hanamkonda(class Component)"} />
+        <UserClass name={"second"} location={"Hanamkonda(Class Component)"} />
       </div>
     );
   }
