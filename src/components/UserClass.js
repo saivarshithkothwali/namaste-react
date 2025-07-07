@@ -15,6 +15,9 @@ class UserClass extends React.Component {
   }
 
   async componentDidMount() {
+    this.timer = setInterval(() => {
+      console.log("Namaste React OP");
+    }, 1000);
     console.log(this.props.name + " component did mount");
 
     const data = await fetch(
@@ -34,6 +37,7 @@ class UserClass extends React.Component {
   }
 
   componentWillUnmount() {
+    clearInterval(this.timer);
     console.log("component will unmount");
   }
   render() {
