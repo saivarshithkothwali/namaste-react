@@ -5,8 +5,17 @@ const User = (props) => {
   const [state1, setState1] = useState(1);
 
   useEffect(() => {
+    const timer = setInterval(() => {
+      console.log("Namaste React OP");
+    }, 1000);
+    console.log("useEffect");
     fetchData();
+    return () => {
+      clearInterval(timer);
+      console.log("UseEffect Return");
+    };
   }, []);
+  console.log("Render");
 
   const fetchData = async () => {
     const data = await fetch(
