@@ -38,6 +38,21 @@
   color: #000;
 }
 
+.status {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f8f9fa;
+
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status.offline {
+  background-color: #f8f9fa;
+  color: #6c757d;
+}
 .login-btn {
   padding: 6px 14px;
   font-size: 14px;
@@ -52,6 +67,39 @@
 .login-btn:hover {
   background-color: rgb(217, 58, 58);
   color: white;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.online-Status {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #ffeef0;
+  color: #dc3545;
+  padding: 20px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+
+  animation: pulse 2s infinite;
 }
 
 .container {
