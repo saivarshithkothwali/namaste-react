@@ -34,6 +34,10 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
+      <div className="banner-header">
+        <h1>Order food online from your favorite restaurants</h1>
+        <p>Discover the best food & drinks in your city</p>
+      </div>
       <div className="filter">
         <div className="search">
           <input

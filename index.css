@@ -1,33 +1,87 @@
-.header {
+.top-nav {
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
   align-items: center;
+  padding: 6px 20px;
+  background-color: white;
+  border-bottom: 1px solid #e2e2e2;
+  font-family: sans-serif;
+  height: 60px;
+  overflow: hidden;
 }
 
 .logo {
-  width: 100px;
+  width: 80px;
   height: auto;
-  padding: 0;
-  border: 0;
-  margin: 0;
+  padding: 4px 10px;
+  margin: 0px 10px;
+  object-fit: contain;
 }
 
-.nav-items > ul {
-  font-size: 20px;
+.nav-items ul {
   display: flex;
-  list-style: none;
   align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-right: 20px;
 }
 
-.nav-items > ul > li {
-  padding: 10px;
-  margin: 10px;
+.nav-items li {
+  margin: 0 12px;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .nav-items a {
   text-decoration: none;
-  color: black;
+  color: #000;
+}
+
+.login-btn {
+  padding: 6px 14px;
+  font-size: 14px;
+  background-color: transparent;
+  border: 1px solid rgb(225, 9, 9);
+  color: rgb(235, 12, 23);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: rgb(217, 58, 58);
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0;
+  padding: 0;
+}
+
+.banner-header {
+  background: linear-gradient(to right, #e50914, #f44336);
+  color: white;
+  text-align: center;
+  padding: 18px 20px;
+  margin: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.banner-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.banner-header p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.9;
 }
 
 .res-container {

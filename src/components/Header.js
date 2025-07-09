@@ -1,19 +1,15 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  let btnName = "Login";
-
   const [btnNameReact, setBtnNameReact] = useState("Login");
 
-  useEffect(() => {}, [btnNameReact]);
-
   return (
-    <div className="header">
+    <div className="top-nav">
       <div className="logo-container">
         <Link to="/">
-          <img className="logo" src={LOGO_URL} />
+          <img className="logo" src={LOGO_URL} alt="logo" />
         </Link>
       </div>
       <div className="nav-items">
@@ -22,22 +18,24 @@ const Header = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">AboutUs</Link>
+            <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/contact">ContactUs</Link>
+            <Link to="/contact">Contact Us</Link>
           </li>
-          <li>Cart</li>
-          <button
-            className="login"
-            onClick={() => {
-              btnNameReact === "Login"
-                ? setBtnNameReact("Logout")
-                : setBtnNameReact("Login");
-            }}
-          >
-            {btnNameReact}
-          </button>
+          <li>
+            <Link to="/cart">Cart-0</Link>
+          </li>
+          <li>
+            <button
+              className="login-btn"
+              onClick={() =>
+                setBtnNameReact(btnNameReact === "Login" ? "Logout" : "Login")
+              }
+            >
+              {btnNameReact}
+            </button>
+          </li>
         </ul>
       </div>
     </div>
