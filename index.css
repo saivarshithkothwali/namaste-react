@@ -1,3 +1,4 @@
+@import "tailwindcss";
 .top-nav {
   display: flex;
   justify-content: space-between;
