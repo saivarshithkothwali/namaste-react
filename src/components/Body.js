@@ -39,10 +39,19 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="banner-header">
-        <h1>Order food online from your favorite restaurants</h1>
-        <p>Discover the best food & drinks in your city</p>
+      <div className=" w-full px-04">
+        <div className="bg-gradient-to-r from-[#eb2730] to-[#f6493d] text-white px-6 py-6 rounded-lg shadow-md  w-full flex items-center justify-center text-center">
+          <div>
+            <h1 className="text-[28px] font-semibold mb-2.5 leading-snug">
+              Order food online from your favorite restaurants
+            </h1>
+            <p className="text-base font-normal m-0 opacity-90">
+              Discover the best food & drinks in your city
+            </p>
+          </div>
+        </div>
       </div>
+
       <div className="flex justify-center m-2">
         <div className="border border-gray-200 shadow-xl rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-4 w-full max-w-4xl">
           <div className="flex gap-2">
@@ -56,7 +65,7 @@ const Body = () => {
               }}
             />
             <button
-              className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-400 transition-colors cursor-pointer"
+              className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-400 transition-colors cursor-pointer"
               onClick={() => {
                 const filteredRestraunt = listOfRestraunts.filter((res) =>
                   res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -70,7 +79,7 @@ const Body = () => {
           </div>
           <div className="flex gap-2">
             <button
-              className="text-red-400 border border-red-400 px-4 py-2 rounded-md  transition-colors cursor-pointer"
+              className="text-red-400 border border-red-400 px-4 py-2 rounded-md  transition-colors cursor-pointer hover:border-red-600 hover:text-red-600"
               onClick={() => {
                 const filteredList = listOfRestraunts.filter(
                   (res) => res.info.avgRating > 4.0
@@ -82,7 +91,7 @@ const Body = () => {
             </button>
 
             <button
-              className="text-red-400 border border-red-400 px-4 py-2 rounded-md  transition-colors cursor-pointer"
+              className="text-red-400 border border-red-400 px-4 py-2 rounded-md  transition-colors cursor-pointer hover:border-red-600 hover:text-red-600"
               onClick={() => {
                 const filteredList = listOfRestraunts.filter((res) => {
                   const cost = parseInt(res.info.costForTwo.match(/\d+/)[0]);
@@ -96,8 +105,13 @@ const Body = () => {
           </div>
         </div>
       </div>
+      <div>
+        <h1 className="px-4 sm:px-8 lg:px-16 py-4 m-2 text-xl font-bold">
+          Restraunts Near You
+        </h1>
+      </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap justify-center">
         {filteredRestraunts.map((restraunt) => (
           <Link key={restraunt.info.id} to={"/restraunts/" + restraunt.info.id}>
             <RestrauntCard resData={restraunt} />

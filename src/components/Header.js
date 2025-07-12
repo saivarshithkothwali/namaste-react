@@ -13,7 +13,8 @@ const Header = () => {
       <div className="logo-container">
         <Link to="/">
           <img
-            className="w-[100px] h-auto py-1 px-2.5 my-0 mx-2.5 object-contain"
+            className="w-[100px] h-auto py-1 px-2.5 my-0 mx-2.5 object-contain transition-transform duration-300 ease-in-out 
+             hover:scale-110"
             src={LOGO_URL}
             alt="logo"
           />
