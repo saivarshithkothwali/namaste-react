@@ -4,13 +4,16 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { withVegLabel } from "./RestrauntCard";
 
 const Body = () => {
   const [listOfRestraunts, setListOfRestraunts] = useState([]);
   const [filteredRestraunts, setFilteredRestraunts] = useState([]);
 
+  const RestrauntCardVeg = withVegLabel(RestrauntCard);
+
   const [searchText, setSearchText] = useState("");
-  //console.log("Body Rendered");
+  console.log(listOfRestraunts);
 
   useEffect(() => {
     fetchData();
@@ -114,7 +117,14 @@ const Body = () => {
       <div className="flex flex-wrap justify-center">
         {filteredRestraunts.map((restraunt) => (
           <Link key={restraunt.info.id} to={"/restraunts/" + restraunt.info.id}>
-            <RestrauntCard resData={restraunt} />
+            {
+              /* If the Restraunt is veg then add a veg label to it */
+              restraunt.info.veg ? (
+                <RestrauntCardVeg resData={restraunt} />
+              ) : (
+                <RestrauntCard resData={restraunt} />
+              )
+            }
           </Link>
         ))}
       </div>

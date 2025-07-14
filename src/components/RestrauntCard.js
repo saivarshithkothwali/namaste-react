@@ -35,4 +35,25 @@ const RestrauntCard = (props) => {
   );
 };
 
+//Higher Order Component
+// input- RestrauntCard and returns RestrauntCardVeg
+
+export const withVegLabel = (RestrauntCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute z-10  bg-green-600 text-white text-xs mx-4 px-1 py-0.5 rounded font-semibold shadow-sm flex items-center gap-1 ">
+          <img
+            src="https://www.clipartmax.com/png/full/165-1650927_veg-symbol.png"
+            alt="Veg Symbol"
+            className="w-3.5 h-3.5"
+          />
+          Veg
+        </label>
+        <RestrauntCard {...props} />
+      </div>
+    );
+  };
+};
+
 export default RestrauntCard;
