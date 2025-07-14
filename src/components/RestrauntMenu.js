@@ -2,6 +2,7 @@ import Shimmer from "./Shimmer";
 import { ITEM_IMAGE_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import useRestrauntMenu from "../utils/useRestrauntMenu";
+import RestrauntCategory from "./RestrauntCategory";
 
 const RestrauntMenu = () => {
   //const [resInfo, setResInfo] = useState(null); This is not required as we are using custom Hook
@@ -34,10 +35,18 @@ const RestrauntMenu = () => {
 
   const regularCards =
     resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
-
+  console.log(regularCards);
   const itemCards = regularCards?.[2]?.card?.card?.itemCards || [];
 
   console.log(itemCards);
+
+  const categories =
+    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  console.log(categories);
 
   return (
     <div>
@@ -50,32 +59,9 @@ const RestrauntMenu = () => {
         <h3>{areaName}</h3>
       </div>
 
-      <div className="res-menu">
-        {itemCards.map((item) => (
-          <div key={item.card.info.id} className="menu-item">
-            <div className="item-details">
-              <h3 className="name">{item.card.info.name}</h3>
-              <p className="price">
-                Rs.
-                {item.card.info.price / 100 ||
-                  item.card.info.defaultPrice / 100}
-              </p>
-              <p className="rating">
-                ⭐{item.card.info.ratings.aggregatedRating.rating} (
-                {item.card.info.ratings.aggregatedRating.ratingCountV2})
-              </p>
-              <p className="description">{item.card.info.description}</p>
-            </div>
-            {item.card.info.imageId && (
-              <img
-                src={ITEM_IMAGE_URL + item.card.info.imageId}
-                alt={item.card.info.name}
-                className="food-img"
-              />
-            )}
-          </div>
-        ))}
-      </div>
+      {categories.map((category) => (
+        <RestrauntCategory data={category?.card?.card} />
+      ))}
     </div>
   );
 };
