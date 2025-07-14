@@ -35,10 +35,10 @@ const RestrauntMenu = () => {
 
   const regularCards =
     resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
-  console.log(regularCards);
+  //console.log(regularCards);
   const itemCards = regularCards?.[2]?.card?.card?.itemCards || [];
 
-  console.log(itemCards);
+  //console.log(itemCards);
 
   const categories =
     resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -46,7 +46,7 @@ const RestrauntMenu = () => {
         c.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
-  console.log(categories);
+  //console.log(categories);
 
   return (
     <div>
@@ -60,7 +60,10 @@ const RestrauntMenu = () => {
       </div>
 
       {categories.map((category) => (
-        <RestrauntCategory data={category?.card?.card} />
+        <RestrauntCategory
+          key={category?.card?.card?.categoryId}
+          data={category?.card?.card}
+        />
       ))}
     </div>
   );
