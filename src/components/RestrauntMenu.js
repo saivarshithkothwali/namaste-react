@@ -3,6 +3,7 @@ import { ITEM_IMAGE_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import useRestrauntMenu from "../utils/useRestrauntMenu";
 import RestrauntCategory from "./RestrauntCategory";
+import { useState } from "react";
 
 const RestrauntMenu = () => {
   //const [resInfo, setResInfo] = useState(null); This is not required as we are using custom Hook
@@ -10,6 +11,8 @@ const RestrauntMenu = () => {
   const { resId } = useParams();
 
   const resInfo = useRestrauntMenu(resId);
+
+  const [showIndex, setShowIndex] = useState();
 
   /* useEffect(() => {
     fetchMenu();
@@ -59,10 +62,12 @@ const RestrauntMenu = () => {
         <h3>{areaName}</h3>
       </div>
 
-      {categories.map((category) => (
+      {categories.map((category, index) => (
         <RestrauntCategory
           key={category?.card?.card?.categoryId}
           data={category?.card?.card}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
         />
       ))}
     </div>

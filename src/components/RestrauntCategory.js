@@ -1,14 +1,13 @@
 import ItemList from "./ItemList";
 import { useState } from "react";
 
-const RestrauntCategory = (data) => {
-  //console.log(data);
-  const [showItems, setShowItems] = useState(false);
+const RestrauntCategory = ({ data, showItems, setShowIndex }) => {
+  console.log(data);
 
   const handleClick = () => {
-    console.log("Clicked");
-    setShowItems(!showItems);
+    setShowIndex();
   };
+
   return (
     <div className="w-8/12 mx-auto my-6 bg-gray-100 drop-shadow-xl p-2 ">
       <div
@@ -17,13 +16,13 @@ const RestrauntCategory = (data) => {
       >
         {/*Accordian Header*/}
         <span className="text-neutral-900 text-xl font-medium">
-          {data.data.title} ({data.data.itemCards.length})
+          {data.title} ({data.itemCards.length})
         </span>
         <span>▼</span>
       </div>
 
       {/*Accordian Body */}
-      {showItems && <ItemList items={data.data.itemCards} />}
+      {showItems && <ItemList items={data.itemCards} />}
     </div>
   );
 };

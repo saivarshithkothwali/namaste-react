@@ -1,7 +1,7 @@
 import { ITEM_IMAGE_URL } from "../utils/constants";
 
 const ItemList = ({ items }) => {
-  //console.log(items);
+  console.log(items);
   return (
     <div>
       {items.map((item) => (
@@ -29,11 +29,13 @@ const ItemList = ({ items }) => {
             </p>
           </div>
           <div className="w-3/12 h-[160px] relative ">
-            <img
-              src={ITEM_IMAGE_URL + item.card.info.imageId}
-              alt={item.card.info.name}
-              className="w-full h-full rounded-xl object-cover"
-            />
+            {item.card.info.imageId && (
+              <img
+                src={ITEM_IMAGE_URL + item.card.info.imageId}
+                alt={item.card.info.name}
+                className="w-full h-full rounded-xl object-cover"
+              />
+            )}
             <button className="absolute -bottom-1/12 left-1/2 transform -translate-x-1/2 bg-gray-600 text-white rounded px-6 py-1 hover:bg-gray-5 hover:cursor-pointer transition-transform">
               Add
             </button>
