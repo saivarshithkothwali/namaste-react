@@ -14,6 +14,8 @@ const RestrauntMenu = () => {
 
   const [showIndex, setShowIndex] = useState();
 
+  const dummyData = "dummy";
+
   /* useEffect(() => {
     fetchMenu();
   }, []);
@@ -68,6 +70,7 @@ const RestrauntMenu = () => {
           data={category?.card?.card}
           showItems={index === showIndex ? true : false}
           setShowIndex={() => setShowIndex(index)}
+          dummyData={dummyData}
         />
       ))}
     </div>

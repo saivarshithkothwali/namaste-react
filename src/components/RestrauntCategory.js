@@ -1,8 +1,8 @@
 import ItemList from "./ItemList";
 import { useState } from "react";
 
-const RestrauntCategory = ({ data, showItems, setShowIndex }) => {
-  console.log(data);
+const RestrauntCategory = ({ data, showItems, setShowIndex, dummyData }) => {
+  //console.log(data);
 
   const handleClick = () => {
     setShowIndex();
@@ -22,7 +22,7 @@ const RestrauntCategory = ({ data, showItems, setShowIndex }) => {
       </div>
 
       {/*Accordian Body */}
-      {showItems && <ItemList items={data.itemCards} />}
+      {showItems && <ItemList items={data.itemCards} dummyData={dummyData} />}
     </div>
   );
 };
