@@ -9,6 +9,7 @@ import Error from "./components/Error";
 import RestrauntMenu from "./components/RestrauntMenu";
 //import Grocery from "./components/Grocery";
 import Shimmer from "./components/Shimmer";
+import Cart from "./components/Cart";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 
@@ -47,6 +48,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       { path: "/restraunts/:resId", element: <RestrauntMenu /> },
+      { path: "/cart", element: <Cart /> },
     ],
     errorElement: <Error />,
   },
