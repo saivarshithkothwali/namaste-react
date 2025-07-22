@@ -13,7 +13,7 @@ const Body = () => {
   const RestrauntCardVeg = withVegLabel(RestrauntCard);
 
   const [searchText, setSearchText] = useState("");
-  console.log(listOfRestraunts);
+  //console.log(listOfRestraunts);
 
   useEffect(() => {
     fetchData();
@@ -24,7 +24,7 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.002668480081386&lng=79.54484011977911&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(json);
+    //console.log(json);
 
     setListOfRestraunts(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants

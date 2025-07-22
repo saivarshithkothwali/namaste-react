@@ -2,7 +2,7 @@ import { ITEM_IMAGE_URL } from "../utils/constants";
 
 const ItemList = ({ items, dummyData }) => {
   //console.log(items);
-  console.log(dummyData);
+  //console.log(dummyData);
   return (
     <div>
       {items.map((item) => (
