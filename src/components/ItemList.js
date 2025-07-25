@@ -1,8 +1,18 @@
 import { ITEM_IMAGE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({ items, dummyData }) => {
   //console.log(items);
   //console.log(dummyData);
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    //Dispatch an Action
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -37,7 +47,10 @@ const ItemList = ({ items, dummyData }) => {
                 className="w-full h-full rounded-xl object-cover"
               />
             )}
-            <button className="absolute -bottom-1/12 left-1/2 transform -translate-x-1/2 bg-gray-600 text-white rounded px-6 py-1 hover:bg-gray-5 hover:cursor-pointer transition-transform">
+            <button
+              className="absolute -bottom-1/12 left-1/2 transform -translate-x-1/2 bg-gray-600 text-white rounded px-6 py-1 hover:bg-gray-5 hover:cursor-pointer transition-transform"
+              onClick={() => handleAddItem(item)}
+            >
               Add
             </button>
           </div>
