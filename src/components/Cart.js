@@ -33,7 +33,7 @@ const Cart = () => {
             </h3>
           </div>
         )}
-        <ItemList items={cartItems} />
+        <ItemList items={cartItems} showQuantity={true} />
       </div>
     </div>
   );

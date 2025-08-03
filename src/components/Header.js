@@ -62,9 +62,6 @@ const Header = () => {
               {btnNameReact}
             </button>
           </li>
-          <li className="hover:text-red-500 cursor-pointer py-1.5">
-            {data.loggedInUser}
-          </li>
         </ul>
       </div>
     </div>

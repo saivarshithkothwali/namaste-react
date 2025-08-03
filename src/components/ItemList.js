@@ -2,7 +2,7 @@ import { ITEM_IMAGE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 
-const ItemList = ({ items, dummyData }) => {
+const ItemList = ({ items, dummyData, showQuantity = false }) => {
   //console.log(items);
   //console.log(dummyData);
 
@@ -28,6 +28,7 @@ const ItemList = ({ items, dummyData }) => {
                 ? item.card.info.price / 100
                 : item.card.info.defaultPrice / 100}
             </span>
+
             <span className="my-1">
               ⭐
               {item.card.info.ratings.aggregatedRating.rating
@@ -39,20 +40,27 @@ const ItemList = ({ items, dummyData }) => {
               {item.card.info.description}
             </p>
           </div>
-          <div className="w-3/12 h-[160px] relative ">
-            {item.card.info.imageId && (
-              <img
-                src={ITEM_IMAGE_URL + item.card.info.imageId}
-                alt={item.card.info.name}
-                className="w-full h-full rounded-xl object-cover"
-              />
+          <div className="w-3/12 flex flex-col items-center">
+            <div className="relative w-full h-[160px]">
+              {item.card.info.imageId && (
+                <img
+                  src={ITEM_IMAGE_URL + item.card.info.imageId}
+                  alt={item.card.info.name}
+                  className="w-full h-full rounded-xl object-cover"
+                />
+              )}
+              <button
+                className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-gray-600 text-white rounded px-6 py-1 hover:bg-gray-500 cursor-pointer transition-transform"
+                onClick={() => handleAddItem(item)}
+              >
+                Add
+              </button>
+            </div>
+            {showQuantity && item.quantity && (
+              <span className="mt-2 text-base font-semibold text-gray-700">
+                Quantity: {item.quantity}
+              </span>
             )}
-            <button
-              className="absolute -bottom-1/12 left-1/2 transform -translate-x-1/2 bg-gray-600 text-white rounded px-6 py-1 hover:bg-gray-5 hover:cursor-pointer transition-transform"
-              onClick={() => handleAddItem(item)}
-            >
-              Add
-            </button>
           </div>
         </div>
       ))}
