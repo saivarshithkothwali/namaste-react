@@ -110,7 +110,7 @@ const Body = () => {
       </div>
       <div>
         <h1 className="px-4 sm:px-8 lg:px-16 py-4 m-2 text-xl font-bold">
-          Restraunts Near You
+          Restaurants Near You
         </h1>
       </div>
 
