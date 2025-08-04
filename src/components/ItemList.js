@@ -1,6 +1,6 @@
 import { ITEM_IMAGE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { addItem } from "../utils/cartSlice";
+import { addItem, removeItem } from "../utils/cartSlice";
 
 const ItemList = ({ items, dummyData, showQuantity = false }) => {
   //console.log(items);
@@ -11,6 +11,10 @@ const ItemList = ({ items, dummyData, showQuantity = false }) => {
   const handleAddItem = (item) => {
     //Dispatch an Action
     dispatch(addItem(item));
+  };
+
+  const handleRemoveItem = (itemId) => {
+    dispatch(removeItem(itemId));
   };
 
   return (
@@ -56,10 +60,22 @@ const ItemList = ({ items, dummyData, showQuantity = false }) => {
                 Add
               </button>
             </div>
-            {showQuantity && item.quantity && (
-              <span className="mt-2 text-base font-semibold text-gray-700">
-                Quantity: {item.quantity}
-              </span>
+            {showQuantity && (
+              <div className="flex justify-center mt-2 items-center">
+                <button
+                  className="bg-gray-100 text-gray-700 px-2 rounded-md hover:bg-gray-200"
+                  onClick={() => handleRemoveItem(item.card.info.id)}
+                >
+                  -
+                </button>
+                <span className="mx-2">{item.quantity}</span>
+                <button
+                  className="bg-gray-100 text-gray-700 px-2 rounded-md hover:bg-gray-200"
+                  onClick={() => handleAddItem(item)}
+                >
+                  +
+                </button>
+              </div>
             )}
           </div>
         </div>
