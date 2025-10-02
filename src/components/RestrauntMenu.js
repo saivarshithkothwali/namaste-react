@@ -15,6 +15,7 @@ const RestrauntMenu = () => {
   const [showIndex, setShowIndex] = useState();
 
   const dummyData = "dummy";
+  //console.log(dummyData);
 
   /* useEffect(() => {
     fetchMenu();

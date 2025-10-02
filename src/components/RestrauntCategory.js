@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const RestrauntCategory = ({ data, showItems, setShowIndex, dummyData }) => {
   //console.log(data);
+  //console.log(dummyData);
 
   const handleClick = () => {
     setShowIndex();
