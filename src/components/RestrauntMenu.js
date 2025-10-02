@@ -65,6 +65,7 @@ const RestrauntMenu = () => {
       </div>
 
       {categories.map((category, index) => (
+        //Controlled component
         <RestrauntCategory
           key={category?.card?.card?.categoryId}
           data={category?.card?.card}

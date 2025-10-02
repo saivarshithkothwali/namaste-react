@@ -6,17 +6,17 @@ import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  console.log("Header rendered");
+  //console.log("Header rendered");
   const [btnNameReact, setBtnNameReact] = useState("Login");
 
   const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
-    console.log("useEffect rendered");
+    //console.log("useEffect rendered");
   }, []);
 
   const data = useContext(UserContext);
-  //console.log(data);
+  console.log(data);
 
   const cartItems = useSelector((store) => store.cart.items);
   //console.log(cartItems);

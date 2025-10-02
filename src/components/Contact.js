@@ -1,19 +1,110 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [chatMessages, setChatMessages] = useState([]);
+  const [chatInput, setChatInput] = useState("");
+  const chatEndRef = useRef(null);
+
+  // --- FIXED: Fetch data from YOUR backend to avoid CORS error ---
+  useEffect(() => {
+    const fetchAndUpsertRestaurants = async () => {
+      try {
+        console.log("1. Starting to fetch restaurant data...");
+        const res = await fetch("http://localhost:5000/api/get-restaurants");
+        const json = await res.json();
+        console.log("2. Raw data received from backend:", json);
+
+        // --- NEW, MORE ROBUST LOGIC ---
+        // Find the card that contains the restaurant grid, regardless of its type
+        const restaurantCard = json?.data?.cards?.find(
+          (c) => c.card?.card?.gridElements?.infoWithStyle?.restaurants
+        );
+
+        console.log("3. Found restaurant card:", restaurantCard);
+
+        // Extract the restaurants from that card
+        let restaurants =
+          restaurantCard?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map(
+            (item) => ({
+              id: item.info.id,
+              name: item.info.name,
+              cuisines: item.info.cuisines,
+              costForTwo: item.info.costForTwo,
+              deliveryTime: item.info.sla.deliveryTime,
+              rating: item.info.avgRating,
+            })
+          ) || [];
+
+        console.log("4. Extracted restaurants:", restaurants);
+
+        restaurants = restaurants.slice(0, 100);
+
+        if (restaurants.length > 0) {
+          console.log(
+            "5. Found restaurants, attempting to upsert to Pinecone..."
+          );
+          await fetch("http://localhost:5000/api/upsert-restaurants", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ restaurants }),
+          });
+          console.log(
+            `6. Successfully requested upsert for ${restaurants.length} restaurants.`
+          );
+        } else {
+          console.log("5. No restaurants were extracted, skipping upsert.");
+        }
+      } catch (err) {
+        console.error("Failed to process restaurants:", err);
+      }
+    };
+    fetchAndUpsertRestaurants();
+  }, []);
+
+  useEffect(() => {
+    setTimeout(
+      () => chatEndRef.current?.scrollIntoView({ behavior: "smooth" }),
+      100
+    );
+  }, [chatMessages]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", { name, email, message });
-
     setName("");
     setEmail("");
     setMessage("");
   };
 
+  const sendChatMessage = async () => {
+    if (!chatInput.trim()) return;
+
+    const userMessage = { sender: "user", text: chatInput };
+    setChatMessages((prev) => [...prev, userMessage]);
+    const currentInput = chatInput;
+    setChatInput("");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: currentInput }),
+      });
+
+      const data = await response.json();
+      const botMessage = { sender: "bot", text: data.answer };
+      setChatMessages((prev) => [...prev, botMessage]);
+    } catch (err) {
+      console.error(err);
+      const botMessage = { sender: "bot", text: "Oops! Something went wrong." };
+      setChatMessages((prev) => [...prev, botMessage]);
+    }
+  };
+
+  // The rest of your JSX remains the same...
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Top Header */}
@@ -82,26 +173,72 @@ const Contact = () => {
           </form>
         </div>
 
-        {/* Right - Contact Info */}
-        <div className="w-full md:w-1/2 bg-white p-6 rounded-md shadow-sm">
-          <h2 className="text-2xl font-semibold mb-4">Get in touch</h2>
-          <ul className="space-y-4 text-sm text-gray-700">
-            <li>
-              📍 <span className="font-semibold">Address:</span>
-              <br />
-              567 FoodExpress Street, FoodExpress City, 2613051
-            </li>
-            <li>
-              📞 <span className="font-semibold">Phone:</span>
-              <br />
-              +91 9876543210
-            </li>
-            <li>
-              📧 <span className="font-semibold">Email:</span>
-              <br />
-              support@foodexpress.com
-            </li>
-          </ul>
+        {/* Right - Chatbot + Contact Info */}
+        <div className="w-full md:w-1/2 flex flex-col gap-6">
+          {/* Chatbot Section */}
+          <div className="bg-white p-4 rounded-md shadow h-96 flex flex-col">
+            <h2 className="text-2xl font-semibold mb-4">AI Chat Support</h2>
+            <div className="flex-1 overflow-y-auto p-2 border rounded mb-2">
+              {chatMessages.map((msg, i) => (
+                <div
+                  key={i}
+                  className={`mb-2 ${
+                    msg.sender === "user" ? "text-right" : "text-left"
+                  }`}
+                >
+                  <span
+                    className={`inline-block px-3 py-1 rounded-lg ${
+                      msg.sender === "user"
+                        ? "bg-red-500 text-white"
+                        : "bg-gray-200 text-gray-800"
+                    }`}
+                  >
+                    {msg.text}
+                  </span>
+                </div>
+              ))}
+              <div ref={chatEndRef} />
+            </div>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && sendChatMessage()}
+                placeholder="Ask a question..."
+                className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-400"
+              />
+              <button
+                onClick={sendChatMessage}
+                className="bg-red-500 text-white px-4 py-2 rounded-md disabled:opacity-50 hover:bg-red-600 transition-all duration-300"
+                disabled={!chatInput.trim()}
+              >
+                Send
+              </button>
+            </div>
+          </div>
+
+          {/* Contact Info Section */}
+          <div className="bg-white p-6 rounded-md shadow-sm">
+            <h2 className="text-2xl font-semibold mb-4">Get in touch</h2>
+            <ul className="space-y-4 text-sm text-gray-700">
+              <li>
+                📍 <span className="font-semibold">Address:</span>
+                <br />
+                567 FoodExpress Street, FoodExpress City, 2613051
+              </li>
+              <li>
+                📞 <span className="font-semibold">Phone:</span>
+                <br />
+                +91 9876543210
+              </li>
+              <li>
+                📧 <span className="font-semibold">Email:</span>
+                <br />
+                support@foodexpress.com
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

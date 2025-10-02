@@ -7,6 +7,8 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import { withVegLabel } from "./RestrauntCard";
 
 const Body = () => {
+  console.log("Body called");
+
   const [listOfRestraunts, setListOfRestraunts] = useState([]);
   const [filteredRestraunts, setFilteredRestraunts] = useState([]);
 
@@ -17,6 +19,7 @@ const Body = () => {
 
   useEffect(() => {
     fetchData();
+    console.log("useEffect called");
   }, []);
 
   const fetchData = async () => {
