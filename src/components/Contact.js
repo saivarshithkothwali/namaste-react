@@ -8,7 +8,7 @@ const Contact = () => {
   const [chatInput, setChatInput] = useState("");
   const chatEndRef = useRef(null);
 
-  // --- FIXED: Fetch data from YOUR backend to avoid CORS error ---
+  // Fetch data from YOUR backend to avoid CORS error
   useEffect(() => {
     const fetchAndUpsertRestaurants = async () => {
       try {

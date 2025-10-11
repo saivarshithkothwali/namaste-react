@@ -14,7 +14,7 @@ const RestrauntCard = (props) => {
     sla: { slaString },
   } = resData?.info;
 
-  const { loggedInUser } = useContext(UserContext);
+  //const { loggedInUser } = useContext(UserContext);
 
   return (
     <div className="flex flex-col w-[200px] h-[300px] m-[15px] rounded-[10px] gap-0 transition-transform  duration-300 ease-in-out cursor-pointer hover:scale-105 hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] bg-gray-100">
@@ -36,7 +36,7 @@ const RestrauntCard = (props) => {
       <h4 className="text-[16px] font-extralight px-[5px] pt-[5px] pb-0 text-[#777777] m-0">
         {areaName}
       </h4>
-      <h4>{loggedInUser}</h4>
+      {/*<h4>{loggedInUser}</h4>*/}
     </div>
   );
 };
